@@ -1,0 +1,76 @@
+{% extends 'myapp/base.html' %} {% load static %} {% block body %}
+<body style="background-image: linear-gradient(black, wheat)">
+    <div id="carouselExampleCaptions" class="carousel slide my-1" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+          {% for carousel in carousels %}
+          <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="{{ forloop.counter0 }}"
+            {% if forloop.first %}class="active"{% endif %}></button>
+          {% endfor %}
+        </div>
+        <div class="carousel-inner">
+          {% for carousel in carousels %}
+          <div class="carousel-item {% if forloop.first %}active{% endif %}">
+            <img src="{{ carousel.image.url }}" class="d-block w-100" alt="{{ carousel.caption }}" />
+            <div class="carousel-caption d-none d-md-block">
+              <h5>{{ carousel.label }}</h5>
+              <p>{{ carousel.content }}</p>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+
+  <div class="container">
+    <h2 class="my-2 text-center" style="color: wheat">
+      Here Are Our Range of Tattoos
+    </h2>
+
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+      {% for product in products %}
+      <div class="col">
+        <div
+          class="card shadow-sm"
+          style="
+            background-image: linear-gradient(black, rgb(142, 110, 51));
+            color: black;
+          "
+        >
+          <img
+            style="width: 420px; height: 320px"
+            src="{{ product.image.url }}"
+            class="card-img-top img-fluid"
+            alt="{{ product.product_name }}"
+          />
+          <div class="card-body">
+            <h5 style="font-weight: bold" class="card-title text-center">
+              {{ product.product_name }}
+            </h5>
+            <div class="row">
+              <div class="col text-center">
+                <a href="/myapp/viewproduct/{{ product.id }}"
+                  ><button
+                    id="qv{{ product.id }}"
+                    class="btn"
+                    style="background-color: black; color: wheat"
+                  >
+                    View Product
+                  </button></a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</body>
+{% endblock %}

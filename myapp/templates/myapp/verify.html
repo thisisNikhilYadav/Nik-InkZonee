@@ -1,0 +1,35 @@
+{% extends 'myapp/base.html' %}
+
+{% block title %}Verify OTP{% endblock %}
+
+{% block body %}
+<body style="background-image: linear-gradient(wheat,black);
+font-family: 'Roboto', sans-serif;
+background-color: #f8f9fa;height: 100vh;">
+<div class="container" style="max-width: 400px;
+margin:10px auto;
+padding: 20px;
+background-image: linear-gradient(wheat,black);;
+border-radius: 5px;
+box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);">
+  <h2 class="text-center">Enter received OTP</h2>
+  {% if messages %}
+    {% for message in messages %}
+      <div class="alert alert-{{ message.tags }}">
+        {{ message }}
+      </div>
+    {% endfor %}
+  {% endif %}
+
+  <form action="{% url 'verify' %}" method="post">
+    {% csrf_token %}
+    <input type="text" name="otp" placeholder="OTP" required style="width: 100%;">
+    <button type="submit" class="btn btn-success" style="width: 100%;">Verify</button>
+  </form>
+</div>
+</body>
+{% endblock %}
+
+
+
+

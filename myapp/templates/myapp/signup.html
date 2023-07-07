@@ -1,0 +1,78 @@
+{% extends 'myapp/base.html' %} 
+
+{% block title %}Signup to Nik InkZone{% endblock title %} 
+
+{% block body %}
+{% block extra_css %}
+<link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet">
+<style>
+    body {
+        background-image: linear-gradient(wheat,black);
+        font-family: 'Roboto', sans-serif;
+        background-color: #f8f9fa;
+    }
+
+    .container {
+        max-width: 400px;
+        margin:10px auto;
+        padding: 20px;
+        background-image: linear-gradient(wheat,black);;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .text-center {
+        text-align: center;
+    }
+
+    .form-label {
+        font-weight: bold;
+    }
+
+    .form-control {
+        margin-bottom: 10px;
+    }
+
+    .btn-primary {
+        width: 100%;
+    }
+</style>
+{% endblock extra_css %}
+
+<body>
+    <div class="container">
+        <h2 class="text-center">Signup</h2>
+        <form action="{% url 'signup_user' %}" method="post">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label for="username" class="form-label">User Name</label>
+                <input type="text" class="form-control" id="username" name="username" required placeholder="(lowercase and integers only)">
+            </div>
+            <div class="mb-3">
+                <label for="fname" class="form-label">First Name</label>
+                <input type="text" class="form-control" id="fname" name="fname" required  placeholder="Enter your firstname">
+            </div>
+            <div class="mb-3">
+                <label for="lname" class="form-label">Last Name</label>
+                <input type="text" class="form-control" id="lname" name="lname" required placeholder="Enter your lastname">
+            </div>
+            <div class="mb-3">
+                <label for="email" class="form-label">Email address</label>
+                <input type="email" class="form-control" id="email" name="email" required placeholder="ex-abc@wyz.com">
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" class="form-control" id="password" name="password" required placeholder="Enter your password">
+            </div>
+            <div class="mb-3">
+                <label for="cpassword" class="form-label">Confirm Password</label>
+                <input type="password" class="form-control" id="cpassword" name="cpassword" required placeholder="Re-Enter your password">
+            </div>
+            <div class="mb-3">
+                <button type="submit" class="btn btn-success" style="width: 100%;">Signup</button>
+            </div>
+        </form>
+    </div>
+</body>
+
+{% endblock body %}

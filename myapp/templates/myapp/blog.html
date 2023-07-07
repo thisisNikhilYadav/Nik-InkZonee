@@ -1,0 +1,33 @@
+{% extends 'myapp/base.html' %}
+{% load static %}
+{% block body %}
+<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+  {% for blog_item in blogs %}
+  <div class="col">
+    <div class="card shadow-sm">
+      <img
+        style="width: 499px; height: 320px"
+        src="{{ blog_item.thumbnail.url }}"
+        class="card-img-top img-fluid"
+        alt="{{ blog_item.product_name }}"
+      />
+      <div class="card-body">
+        <h5 style="font-weight: bold" class="card-title">
+          {{ blog_item.title }}
+        </h5>
+
+        <p class="card-text">{{ blog_item.heading1 }}</p>
+        <p class="card-text">Pub. Date: {{ blog_item.pub_date }}</p>
+        <a href="blogpost/{{ blog_item.post_id }}">
+          <button id="qv{{ blog_item.post_id }}" class="btn" style="background-color: black; color: white">
+            Read More
+          </button>
+        </a>
+        
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
+{% endblock %}
